@@ -1,0 +1,32 @@
+//------------------------------------------------------------------------
+//
+//  Name:		#SCRIPTNAME#.cs
+//
+//  Author:		#DEVELOPERNAME#
+//
+//  Date:		#CREATIONDATE#
+//
+//  Project:	#PROJECTNAME#
+//
+//  Desc:   
+//
+//------------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace #NAMESPACE#
+{
+	public class #SCRIPTNAME# : MonoBehaviour 
+	{
+		void Start () 
+		{
+		
+		}
+	
+		void Update () 
+		{
+		
+		}
+	}
+}
