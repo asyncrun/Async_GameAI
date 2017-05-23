@@ -39,6 +39,7 @@ namespace AsyncRun.Core
         }
 
         public virtual void Update() { }
+        public virtual string GetName() { return null; }
 
         public virtual bool HandleMessage(Telegram msg)
         {

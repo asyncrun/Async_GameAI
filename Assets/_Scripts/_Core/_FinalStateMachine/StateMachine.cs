@@ -13,30 +13,48 @@
 //------------------------------------------------------------------------
 
 using System.Diagnostics;
+using UnityEngine;
 
 namespace AsyncRun.Core
 {
 	public class StateMachine<T> where T:Entity
 	{
 	    private readonly T _owner;
-        private State<T> _previourState;
-        private State<T> _currentState;
-	    private State<T> _globalState;
 
-	    public State<T> CurrentState
+        private IState<T> _previourState;
+        public IState<T> PreviousState
+        {
+            get { return _previourState; }
+        }
+
+        private IState<T> _currentState;
+        public IState<T> CurrentState
 	    {
 	        get { return _currentState; }
             set { _currentState = value; }
 	    }
+
+        private IState<T> _globalState;
+        public IState<T> GlobalState
+        {
+            get { return _globalState; }
+        }
+
+
+        public string GetCurrentStateName
+        {
+            get { return _currentState.GetType().Name; }
+        }
+
 
         public StateMachine(T owner)
         {
             _owner = owner;
         }
 
-	    public void ChangeState(State<T> newState)
+	    public void ChangeState(IState<T> newState)
 	    {
-            Debug.Assert(newState != null, "<StateMachine.ChangeState>:: trying to assign null state to current.");
+            UnityEngine.Debug.Assert(newState != null, "<StateMachine.ChangeState>:: trying to assign null state to current.");
 
 	        _previourState = _currentState;
 
@@ -44,5 +62,46 @@ namespace AsyncRun.Core
 	        _currentState = newState;
             _currentState.Enter(_owner);
 	    }
+
+        public void Update()
+        {
+            if(_globalState != null)
+            {
+                _globalState.Excute(_owner);
+            }
+
+            if(_currentState != null)
+            {
+                _currentState.Excute(_owner);
+            }
+        }
+
+        public bool HandleMessage(Telegram msg)
+        {
+            if(_currentState != null && _currentState.OnMessage(_owner, msg))
+            {
+                return true;
+            }
+
+            if(_globalState != null && _globalState.OnMessage(_owner, msg))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void RevertToPreviousState()
+        {
+            ChangeState(_previourState);
+        }
+
+        public bool IsInState(IState<T> state)
+        {
+            if (_currentState.GetType() == state.GetType())
+            {
+                return true;
+            }
+            return false;
+        }
 	}
 }

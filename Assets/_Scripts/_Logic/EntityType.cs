@@ -16,6 +16,7 @@ namespace AsyncRun.Logic
 {
     enum EntityType
     {
-        Miner
+        MINER,
+        ELSA
     }
 }

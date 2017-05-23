@@ -14,10 +14,11 @@
 
 namespace AsyncRun.Core
 {
-    public class State<T> where T : Entity
+    public interface IState<T> where T : Entity
 	{
-	    public virtual void Enter(T entity){}
-        public virtual void Excute(T entity) { }
-        public virtual void Exit(T entity) { }
-	}
+        void Enter(T entity);
+        void Excute(T entity);
+        void Exit(T entity);
+        bool OnMessage(T entity, Telegram telegram);
+    }
 }

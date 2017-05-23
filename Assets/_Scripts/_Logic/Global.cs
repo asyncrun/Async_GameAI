@@ -23,7 +23,8 @@ namespace AsyncRun.Logic
     {
         void Start()
         {
-            Miner miner = new Miner((int)EntityType.Miner);
+            Miner miner = new Miner((int)EntityType.MINER);
+
             EntityManager.Self.Regist(miner);
 
             UnityAction updateAction = () =>
