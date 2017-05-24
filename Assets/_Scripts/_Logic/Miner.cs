@@ -36,7 +36,20 @@ namespace AsyncRun.Logic
                 return _enterMineAndDigForNugget;
             }
         }
-        
+
+        private GoHomeAndSleepTilRested _goHomeAndSleepTilRested;
+        public GoHomeAndSleepTilRested GoHomeAndSleepTilRested
+        {
+            get
+            {
+                if (_goHomeAndSleepTilRested == null)
+                {
+                    _goHomeAndSleepTilRested = new GoHomeAndSleepTilRested();
+                }
+                return _goHomeAndSleepTilRested;
+            }
+        }
+
         private VisitBankAndDepositGold _visitBankAndDepositGold;
         public VisitBankAndDepositGold VisitBankAndDepositGold
         {
@@ -63,6 +76,19 @@ namespace AsyncRun.Logic
             }
         }
 
+        
+        private EatStew _eatStew;
+        public EatStew EatStew
+        {
+            get
+            {
+                if (_eatStew == null)
+                {
+                    _eatStew = new EatStew();
+                }
+                return _eatStew;
+            }
+        }
 
         private LocationType _locationType = LocationType.SHACK;
         public LocationType LocationType
@@ -80,6 +106,15 @@ namespace AsyncRun.Logic
 
         //´æ¿î
         private int _moneyInBank;
+        public int Wealth
+        {
+            get { return _moneyInBank; }
+        }
+
+        public bool IsComfort
+        {
+            get { return _moneyInBank >= ComfortLevel; }
+        }
 
         //¿Ú¿Ê
         private int _thirst;
@@ -138,6 +173,11 @@ namespace AsyncRun.Logic
             {
                 _goldCarried = 0;
             }
+        }
+
+        public void SetGoldCarried(int val)
+        {
+            _goldCarried = val;
         }
 
         public void AddToWealth(int val)

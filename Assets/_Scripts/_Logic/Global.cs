@@ -32,7 +32,7 @@ namespace AsyncRun.Logic
                 miner.Update();
             };
 
-            StartCoroutine(MinerUpdate(2, updateAction));
+            StartCoroutine(GlobalUpdate(2, updateAction));
         }
 
 
@@ -41,7 +41,7 @@ namespace AsyncRun.Logic
             DispatchMessage.Self.DispatchDelayedMessage();
         }
 
-        public IEnumerator MinerUpdate(float waitTime, UnityAction updateAction)
+        public IEnumerator GlobalUpdate(float waitTime, UnityAction updateAction)
         {
             while (true)
             {

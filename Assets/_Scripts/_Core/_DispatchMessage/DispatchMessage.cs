@@ -21,6 +21,9 @@ namespace AsyncRun.Core
     {
         private readonly List<Telegram> _telegramList = new List<Telegram>();
 
+        public const float SendMessageImmediately = 0.0f;
+        public const object NoAdditionInfo = null;
+
         public void Discharge(Entity receiver, Telegram telegram)
         {
             if (!receiver.HandleMessage(telegram))
@@ -32,7 +35,7 @@ namespace AsyncRun.Core
         public void DispatchMsg(int senderId, int receiverId, float delayTime, MessageTypes messageType,
             object extraInfo)
         {
-            Entity sender = EntityManager.Self.GetEntity(senderId);
+            //Entity sender = EntityManager.Self.GetEntity(senderId);
             Entity receiver = EntityManager.Self.GetEntity(receiverId);
 
             if (receiver == null)
