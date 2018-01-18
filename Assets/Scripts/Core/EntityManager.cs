@@ -36,6 +36,7 @@ namespace AsyncRun.Core
         {
             if (_entityDic.ContainsKey(id))
             {
+                Object.DestroyObject(_entityDic[id].gameObject);
                 _entityDic.Remove(id);
             }
         }
