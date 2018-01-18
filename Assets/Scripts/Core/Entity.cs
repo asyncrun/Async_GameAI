@@ -27,7 +27,7 @@ namespace AsyncRun.Core
             get { return _id; }
         }
         
-        private void SetId(int id)
+        protected void SetId(int id)
         {
             Debug.Assert(id >= _nextValidId, "<Entity::SetId> : invalid ID");
             _id = id;

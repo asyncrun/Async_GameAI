@@ -24,6 +24,8 @@ namespace AsyncRun.Logic
         void Start()
         {
             NPC_Guard npcGuard = new GameObject().AddComponent<NPC_Guard>();
+            npcGuard.InitData(EntityID.NPC_Guard);
+
             EntityManager.Self.Regist(npcGuard);
 
             StartCoroutine(GlobalUpdate(1, () => { npcGuard.Excute(); }));

@@ -48,6 +48,11 @@ public class NPC_Guard : Entity
         _ownerStateMachine.CurrentState = _patrol;
     }
 
+    public void InitData(EntityID id)
+    {
+        SetId((int)id);
+    }
+
     public override void Excute()
     {
         _ownerStateMachine.Excute();
